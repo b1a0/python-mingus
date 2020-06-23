@@ -180,10 +180,11 @@ class Bar(object):
     def transpose(self, interval, up=True):
         """Transpose the notes in the bar up or down the interval.
 
-        Call transpose() on all NoteContainers in the bar.
+        Call transpose() on all NoteContainers in the bar which are not rests.
         """
         for cont in self.bar:
-            cont[2].transpose(interval, up)
+            if cont[2]:
+                cont[2].transpose(interval, up)
 
     def determine_chords(self, shorthand=False):
         """Return a list of lists [place_in_beat, possible_chords]."""
